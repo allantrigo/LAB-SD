@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.inatel.labs.labrest.server.exception.CursoNaoEncontradoException;
 import br.inatel.labs.labrest.server.model.Curso;
 import br.inatel.labs.labrest.server.service.CursoService;
 
@@ -39,8 +40,7 @@ public class CursoController {
 		if (opCurso.isPresent()) {
 			return opCurso.get();
 		} else {
-			String message = String.format("Nenhum curso encontrado com id [%s]", cursoId);
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, message);
+			throw new CursoNaoEncontradoException(cursoId);
 		}
 	}
 
@@ -58,8 +58,7 @@ public class CursoController {
 		if (opCurso.isPresent()) {
 			servico.atualizarCurso(curso);
 		} else {
-			String message = String.format("Nenhum curso encontrado com id [%s]", curso.getId());
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, message);
+			throw new CursoNaoEncontradoException(curso.getId());
 		}
 	}
 
@@ -70,8 +69,7 @@ public class CursoController {
 		if (opCurso.isPresent()) {
 			servico.removerCurso(opCurso.get());
 		} else {
-			String message = String.format("Nenhum curso encontrado com id [%s]", cursoIdParaRemover);
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, message);
+			throw new CursoNaoEncontradoException(cursoIdParaRemover);
 		}
 	}
 
