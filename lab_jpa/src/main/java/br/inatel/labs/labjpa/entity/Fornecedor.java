@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,6 +18,9 @@ public class Fornecedor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@OneToOne
+	private Endereco endereco;
 
 	@ManyToMany
 	private List<Produto> listaProduto;
@@ -40,6 +44,14 @@ public class Fornecedor {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public List<Produto> getListaProduto() {
