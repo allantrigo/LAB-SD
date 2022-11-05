@@ -17,14 +17,22 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToMany(mappedBy = "listaProduto")
 	private List<Fornecedor> listaFornecedor;
-	
+
 	@NotNull
 	@NotBlank
 	@Size(max = 100)
 	private String descricao;
+
+	public Produto() {
+	}
+
+	public Produto(String descricao) {
+		super();
+		this.descricao = descricao;
+	}
 
 	public Long getId() {
 		return id;

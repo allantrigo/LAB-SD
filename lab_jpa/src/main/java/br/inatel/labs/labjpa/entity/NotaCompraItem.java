@@ -31,6 +31,17 @@ public class NotaCompraItem {
 	@Positive
 	private Integer quantidade;
 
+	public NotaCompraItem() {
+	}
+
+	public NotaCompraItem(NotaCompra notaCompra, Produto produto, BigDecimal valorCompraProduto, Integer quantidade) {
+		super();
+		this.notaCompra = notaCompra;
+		this.produto = produto;
+		this.valorCompraProduto = valorCompraProduto;
+		this.quantidade = quantidade;
+	}
+
 	public BigDecimal getCalculoTotalItem() {
 		return valorCompraProduto.multiply(BigDecimal.valueOf(quantidade));
 	}
