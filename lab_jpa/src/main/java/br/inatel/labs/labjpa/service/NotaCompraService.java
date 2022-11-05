@@ -29,12 +29,18 @@ public class NotaCompraService {
 		return nc;
 	}
 
+	public NotaCompra buscarNotaCompraPeloIdComListaItem(Long id) {
+		NotaCompra nota = em.find(NotaCompra.class, id);
+		nota.getListaNotaCompraItem().size();
+		return nota;
+	}
+
 	public List<NotaCompra> listarNotaCompra() {
-		List<NotaCompra> listaNotaCompra = em.createQuery("SELECT nc FROM NotaCompra nc", NotaCompra.class).getResultList();
+		List<NotaCompra> listaNotaCompra = em.createQuery("SELECT nc FROM NotaCompra nc", NotaCompra.class)
+				.getResultList();
 		return listaNotaCompra;
 	}
-	
-	
+
 	public NotaCompraItem salvarNotaCompraItem(NotaCompraItem nci) {
 		nci = em.merge(nci);
 		return nci;
@@ -46,7 +52,8 @@ public class NotaCompraService {
 	}
 
 	public List<NotaCompraItem> listarNotaCompraItem() {
-		List<NotaCompraItem> listaNotaCompraItem = em.createQuery("SELECT nci FROM NotaCompraItem nci", NotaCompraItem.class).getResultList();
+		List<NotaCompraItem> listaNotaCompraItem = em
+				.createQuery("SELECT nci FROM NotaCompraItem nci", NotaCompraItem.class).getResultList();
 		return listaNotaCompraItem;
 	}
 }
